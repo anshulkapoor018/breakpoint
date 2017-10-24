@@ -11,9 +11,6 @@ import Firebase
 
 class AuthVC: UIViewController {
 
-    //Outlets
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -41,19 +41,11 @@ class CreatePostVC: UIViewController {
                 }
             })
         }
-        
-        
-        
-        
-        
-        
     }
     
     @IBAction func closeBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-
 }
 
  extension CreatePostVC: UITextViewDelegate {
@@ -61,11 +53,3 @@ class CreatePostVC: UIViewController {
         textView.text = ""
     }
  }
- 
- 
- 
- 
- 
- 
- 
- 
