@@ -2,15 +2,14 @@
 //  SecondViewController.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 22/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
 class GroupsVC: UIViewController {
-    
+
     @IBOutlet weak var groupsTableView: UITableView!
     
     var groupsArray = [Group]()
@@ -20,7 +19,7 @@ class GroupsVC: UIViewController {
         groupsTableView.delegate = self
         groupsTableView.dataSource = self
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
@@ -30,9 +29,10 @@ class GroupsVC: UIViewController {
             }
         }
     }
+    
 }
 
-extension GroupsVC : UITableViewDelegate, UITableViewDataSource{
+extension GroupsVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -42,18 +42,24 @@ extension GroupsVC : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = groupsTableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as? GroupCell else {return UITableViewCell()}
-        
+        guard let cell = groupsTableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as? GroupCell else { return UITableViewCell() }
         let group = groupsArray[indexPath.row]
-        
         cell.configureCell(title: group.groupTitle, description: group.groupDesc, memberCount: group.memberCount)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let group = storyboard?.instantiateViewController(withIdentifier: "GroupFeedVC") as? GroupFeedVC else {return}
-        
-        present(group, animated: true, completion: nil)
+        guard let groupFeedVC = storyboard?.instantiateViewController(withIdentifier: "GroupFeedVC") as? GroupFeedVC else { return }
+        groupFeedVC.initData(forGroup: groupsArray[indexPath.row])
+        present(groupFeedVC, animated: true, completion: nil)
     }
 }
+
+
+
+
+
+
+
+
 

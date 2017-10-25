@@ -1,16 +1,16 @@
- //
+//
 //  CreatePostVC.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 23/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
 import UIKit
 import Firebase
- 
-class CreatePostVC: UIViewController {
 
+class CreatePostVC: UIViewController {
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -23,21 +23,20 @@ class CreatePostVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         self.emailLbl.text = Auth.auth().currentUser?.email
     }
-    
+
     @IBAction func sendBtnWasPressed(_ sender: Any) {
-        if textView.text != nil && textView.text !=  "Say something here..."{
+        if textView.text != nil && textView.text != "Say something here..." {
             sendBtn.isEnabled = false
-            DataService.instance.uploadPost(withMessage: textView.text, forUID: (Auth.auth().currentUser?.uid)! , withGroupKey: nil, sendComplete: { (isComplete) in
+            DataService.instance.uploadPost(withMessage: textView.text, forUID: (Auth.auth().currentUser?.uid)!, withGroupKey: nil, sendComplete: { (isComplete) in
                 if isComplete {
                     self.sendBtn.isEnabled = true
                     self.dismiss(animated: true, completion: nil)
-                }
-                else {
+                } else {
                     self.sendBtn.isEnabled = true
-                    print("There was an error ")
+                    print("There was an error!")
                 }
             })
         }
@@ -48,8 +47,14 @@ class CreatePostVC: UIViewController {
     }
 }
 
- extension CreatePostVC: UITextViewDelegate {
+extension CreatePostVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
- }
+}
+
+
+
+
+
+

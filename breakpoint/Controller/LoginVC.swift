@@ -2,7 +2,7 @@
 //  LoginVC.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 22/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
@@ -10,7 +10,6 @@ import UIKit
 
 class LoginVC: UIViewController {
 
-    //Outlets
     @IBOutlet weak var emailField: InsetTextField!
     @IBOutlet weak var passwordField: InsetTextField!
     
@@ -18,11 +17,10 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         emailField.delegate = self
         passwordField.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func signInBtnWasPressed(_ sender: Any) {
-        if emailField.text != nil && passwordField.text != nil{
+        if emailField.text != nil && passwordField.text != nil {
             AuthService.instance.loginUser(withEmail: emailField.text!, andPassword: passwordField.text!, loginComplete: { (success, loginError) in
                 if success {
                     self.dismiss(animated: true, completion: nil)
@@ -34,7 +32,7 @@ class LoginVC: UIViewController {
                     if success {
                         AuthService.instance.loginUser(withEmail: self.emailField.text!, andPassword: self.passwordField.text!, loginComplete: { (success, nil) in
                             self.dismiss(animated: true, completion: nil)
-                            print("Success")
+                            print("Successfully registered user")
                         })
                     } else {
                         print(String(describing: registrationError?.localizedDescription))
@@ -47,9 +45,6 @@ class LoginVC: UIViewController {
     @IBAction func closeBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
-extension LoginVC: UITextFieldDelegate {
-    
-}
+extension LoginVC: UITextFieldDelegate { }

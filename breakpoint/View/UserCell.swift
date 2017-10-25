@@ -2,7 +2,7 @@
 //  UserCell.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 23/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
@@ -16,21 +16,20 @@ class UserCell: UITableViewCell {
     
     var showing = false
     
-    func configureCell(profileImage image: UIImage, email: String, isSelected: Bool){
+    func configureCell(profileImage image: UIImage, email: String, isSelected: Bool) {
         self.profileImage.image = image
         self.emailLbl.text = email
-        if isSelected{
+        if isSelected {
             self.checkImage.isHidden = false
         } else {
             self.checkImage.isHidden = true
         }
     }
     
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        if selected{
-            if showing == false{
+        if selected {
+            if showing == false {
                 checkImage.isHidden = false
                 showing = true
             } else {

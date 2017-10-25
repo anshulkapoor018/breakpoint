@@ -2,36 +2,40 @@
 //  Group.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 25/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
 import Foundation
 
-class Group{
-    private var _groupTitle : String
-    private var _groupDesc : String
-    private var _key : String
-    private var _memberCount : Int
-    private var _members : [String]
+class Group {
+    private var _groupTitle: String
+    private var _groupDesc: String
+    private var _key: String
+    private var _memberCount: Int
+    private var _members: [String]
     
-    var groupTitle : String{
+    var groupTitle: String {
         return _groupTitle
     }
-    var groupDesc : String{
+    
+    var groupDesc: String {
         return _groupDesc
     }
-    var key : String{
+    
+    var key: String {
         return _key
     }
-    var memberCount : Int{
+    
+    var memberCount: Int {
         return _memberCount
     }
-    var members : [String]{
+    
+    var members: [String] {
         return _members
     }
     
-    init(title: String, description: String, key: String, members : [String], memberCount : Int) {
+    init(title: String, description: String, key: String, members: [String], memberCount: Int) {
         self._groupTitle = title
         self._groupDesc = description
         self._key = key
@@ -39,4 +43,12 @@ class Group{
         self._memberCount = memberCount
     }
 }
+
+
+
+
+
+
+
+
 

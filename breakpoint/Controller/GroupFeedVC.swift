@@ -2,7 +2,7 @@
 //  GroupFeedVC.swift
 //  breakpoint
 //
-//  Created by Anshul Kapoor on 25/10/17.
+//  Created by Anshul Kapoor on 24/10/17.
 //  Copyright © 2017 Anshul Kapoor. All rights reserved.
 //
 
@@ -15,22 +15,32 @@ class GroupFeedVC: UIViewController {
     @IBOutlet weak var membersLbl: UILabel!
     @IBOutlet weak var sendBtnView: UIView!
     @IBOutlet weak var messageTextField: InsetTextField!
-    
     @IBOutlet weak var sendBtn: UIButton!
     
+    var group: Group?
+    
+    func initData(forGroup group: Group) {
+        self.group = group
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sendBtn.bindToKeyboard()
+        sendBtnView.bindToKeyboard()
     }
     
-    
-    @IBAction func backBtnWasPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        groupTitleLbl.text = group?.groupTitle
+        DataService.instance.getEmailsFor(group: group!) { (returnedEmails) in
+            self.membersLbl.text = returnedEmails.joined(separator: ", ")
+        }
     }
     
     @IBAction func sendBtnWasPressed(_ sender: Any) {
         
     }
     
+    @IBAction func backBtnWasPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
