@@ -50,5 +50,10 @@ extension GroupsVC : UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let group = storyboard?.instantiateViewController(withIdentifier: "GroupFeedVC") as? GroupFeedVC else {return}
+        
+        present(group, animated: true, completion: nil)
+    }
 }
 
